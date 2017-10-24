@@ -1,0 +1,14 @@
+
+<h1><%= @song.name %> <small>by <%= @song.user.username %></small></h1>
+
+<p class="lead"><%= @song.description %></p>
+
+<h2>Recordings</h2>
+
+<table class="table table-striped">
+  <% @song.recordings.each do |recording| %>
+    <%= link_to recording.description, recording %>
+  <% end %>
+</table>
+
+<%= link_to 'Edit', edit_song_path(@song), class: 'btn btn-default' %>

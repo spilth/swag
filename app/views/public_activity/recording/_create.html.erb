@@ -1,0 +1,6 @@
+<p><%= activity.owner.username %> added a new version of <%= link_to activity.trackable.song.name, song_path(activity.trackable.song) %>
+
+  <span class="text-muted">&nbsp;<%= timeago_tag activity.created_at, force: true %></span>
+</p>
+
+<p class="text-muted"><%= activity.trackable.description %></p>

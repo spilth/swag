@@ -1,10 +1,10 @@
 <h1>SWAG</h1>
 
 <% if signed_in? %>
-  <h2>Welcome!</h2>
+    <h2>Recent Activity</h2>
 
-  <%= link_to 'Groups', groups_path %>
+    <%= render_activities(@activities) %>
 <% else %>
-  <%= link_to 'Sign Up', new_user_registration_path %>
-  <%= link_to 'Sign In', new_user_session_path %>
+    <%= link_to 'Sign Up', new_user_registration_path %>
+    <%= link_to 'Sign In', new_user_session_path %>
 <% end %>

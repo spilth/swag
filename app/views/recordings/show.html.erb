@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @recording.song.name %> <small><%= @recording.user.username %></small></h1>
+
+<p><%= @recording.description %></p>
+
+<p>
+<audio controls>
+  <source src="<%= @recording.audio.url %>">
+  Your browser does not support the audio element.
+</audio>
+</p>
+
+<%= link_to 'Edit Recording', edit_recording_path(@recording), class: 'btn btn-default' %>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Recordings</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Song</th>
+      <th>Description</th>
+      <th>User</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recordings.each do |recording| %>
+      <tr>
+        <td><%= link_to recording.song.name, recording.song %></td>
+        <td><%= recording.description %></td>
+        <td><%= recording.user.username %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Recording', new_recording_path %>
