@@ -2,8 +2,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :description %>
-    <%= f.association :song %>
+    <%= f.association :song, as: :radio_buttons, collection: current_user.songs.order(:name), prompt: 'Choose a Song' %>
+    <%= f.input :description, placeholder: 'What is new in this version? What has changed?' %>
 
     <p><%= f.input :audio, as: :file %></p>
   </div>
