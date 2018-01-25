@@ -3,18 +3,20 @@
 <h1>Recordings</h1>
 
 <table class="table table-striped">
-  <tbody>
-    <thead>
+  <thead>
     <tr>
+      <th>Recording</th>
       <th>Song</th>
-      <th>Title</th>
+      <th>Created</th>
       <th>User</th>
     </tr>
-    </thead>
+  </thead>
+  <tbody>
     <% @recordings.each do |recording| %>
       <tr>
-        <td><%= link_to recording.song.name, recording.song %></td>
-        <td><%= recording.title %></td>
+        <td><%= link_to recording.title, recording %></td>
+        <td><%= recording.song.name %></td>
+        <td><%= timeago_tag recording.created_at, force: true %></td>
         <td><%= recording.user.username %></td>
       </tr>
     <% end %>
@@ -23,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Recording', new_recording_path, class: 'btn btn-default' %>
+<%= link_to 'New Recording', new_recording_path, class: 'btn btn-primary' %>
