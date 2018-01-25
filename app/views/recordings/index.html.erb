@@ -3,19 +3,18 @@
 <h1>Recordings</h1>
 
 <table class="table table-striped">
-  <thead>
+  <tbody>
+    <thead>
     <tr>
       <th>Song</th>
-      <th>Description</th>
+      <th>Title</th>
       <th>User</th>
     </tr>
-  </thead>
-
-  <tbody>
+    </thead>
     <% @recordings.each do |recording| %>
       <tr>
         <td><%= link_to recording.song.name, recording.song %></td>
-        <td><%= recording.description %></td>
+        <td><%= recording.title %></td>
         <td><%= recording.user.username %></td>
       </tr>
     <% end %>

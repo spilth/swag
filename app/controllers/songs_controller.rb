@@ -2,28 +2,20 @@ class SongsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_song, only: [:show, :edit, :update, :destroy]
 
-  # GET /songs
-  # GET /songs.json
   def index
-    @songs = Song.all
+    @songs = Song.all.order(created_at: :desc)
   end
 
-  # GET /songs/1
-  # GET /songs/1.json
   def show
   end
 
-  # GET /songs/new
   def new
     @song = Song.new
   end
 
-  # GET /songs/1/edit
   def edit
   end
 
-  # POST /songs
-  # POST /songs.json
   def create
     @song = Song.new(song_params)
     @song.user = current_user

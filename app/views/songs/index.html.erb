@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Created</th>
       <th>User</th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @songs.each do |song| %>
       <tr>
         <td><%= link_to song.name, song %></td>
+        <td><%= timeago_tag song.created_at, force: true %></td>
         <td><%= song.user.username %></td>
       </tr>
     <% end %>

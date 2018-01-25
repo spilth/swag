@@ -1,14 +1,26 @@
-
 <h1><%= @song.name %> <small>by <%= @song.user.username %></small></h1>
 
 <p class="lead"><%= @song.description %></p>
 
-<h2>Recordings</h2>
+<% if @song.recordings.any? %>
+  <h2>Recordings</h2>
 
-<table class="table table-striped">
-  <% @song.recordings.each do |recording| %>
-    <%= link_to recording.description, recording %>
-  <% end %>
-</table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <% @song.recordings.each do |recording| %>
+      <tr>
+        <td><%= link_to recording.title, recording %></td>
+        <td><%= timeago_tag recording.created_at, force: true %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>No recordings of this song yet.</p>
+<% end %>
 
 <%= link_to 'Edit', edit_song_path(@song), class: 'btn btn-default' %>

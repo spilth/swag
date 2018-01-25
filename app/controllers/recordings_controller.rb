@@ -2,28 +2,20 @@ class RecordingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_recording, only: [:show, :edit, :update, :destroy]
 
-  # GET /recordings
-  # GET /recordings.json
   def index
-    @recordings = Recording.all
+    @recordings = Recording.all.order(created_at: :desc)
   end
 
-  # GET /recordings/1
-  # GET /recordings/1.json
   def show
   end
 
-  # GET /recordings/new
   def new
     @recording = Recording.new
   end
 
-  # GET /recordings/1/edit
   def edit
   end
 
-  # POST /recordings
-  # POST /recordings.json
   def create
     @recording = Recording.new(recording_params)
     @recording.user = current_user
@@ -39,8 +31,6 @@ class RecordingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /recordings/1
-  # PATCH/PUT /recordings/1.json
   def update
     respond_to do |format|
       if @recording.update(recording_params)
@@ -53,8 +43,6 @@ class RecordingsController < ApplicationController
     end
   end
 
-  # DELETE /recordings/1
-  # DELETE /recordings/1.json
   def destroy
     @recording.destroy
     respond_to do |format|
@@ -71,6 +59,6 @@ class RecordingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recording_params
-      params.require(:recording).permit(:description, :user_id, :song_id, :audio)
+      params.require(:recording).permit(:title, :description, :user_id, :song_id, :audio)
     end
 end

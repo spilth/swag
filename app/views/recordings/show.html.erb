@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @recording.song.name %> <small><%= @recording.user.username %></small></h1>
+<h1><%= link_to @recording.song.name, @recording.song %>: <%= @recording.title %> <small><%= @recording.user.username %></small></h1>
 
 <p><%= @recording.description %></p>
 
