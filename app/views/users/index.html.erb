@@ -1,0 +1,18 @@
+<h1>Users</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= link_to user.username, user %></td>
+    <td><%= timeago_tag user.created_at, force: true %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   resources :recordings
   resources :songs
   resources :groups
-  root to: 'home#index'
+  resources :users, only: [:index, :show]
 
-  devise_for :users
+  root to: 'home#index'
 end

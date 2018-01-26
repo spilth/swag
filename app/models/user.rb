@@ -4,5 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :songs
+  has_many :songs, -> { order(created_at: :desc)}
+  has_many :recordings, -> { order(created_at: :desc) }, through: :songs
 end
