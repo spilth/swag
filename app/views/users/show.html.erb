@@ -2,44 +2,52 @@
 
 <h2>Songs</h2>
 
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>Song</th>
-    <th>Created</th>
-    <th>User</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @user.songs.each do |song| %>
+<% if @user.songs.any? %>
+  <table class="table table-striped">
+    <thead>
     <tr>
-      <td><%= link_to song.name, song %></td>
-      <td><%= timeago_tag song.created_at, force: true %></td>
-      <td><%= song.user.username %></td>
+      <th>Song</th>
+      <th>Created</th>
+      <th>User</th>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <% @user.songs.each do |song| %>
+      <tr>
+        <td><%= link_to song.name, song %></td>
+        <td><%= timeago_tag song.created_at, force: true %></td>
+        <td><%= song.user.username %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No songs yet.</p>
+<% end %>
 
 <h2>Recordings</h2>
 
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>Recording</th>
-    <th>Song</th>
-    <th>Created</th>
-    <th>User</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @user.recordings.each do |recording| %>
+<% if @user.recordings.any? %>
+  <table class="table table-striped">
+    <thead>
     <tr>
-      <td><%= link_to recording.title, recording %></td>
-      <td><%= recording.song.name %></td>
-      <td><%= timeago_tag recording.created_at, force: true %></td>
-      <td><%= recording.user.username %></td>
+      <th>Recording</th>
+      <th>Song</th>
+      <th>Created</th>
+      <th>User</th>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <% @user.recordings.each do |recording| %>
+      <tr>
+        <td><%= link_to recording.title, recording %></td>
+        <td><%= recording.song.name %></td>
+        <td><%= timeago_tag recording.created_at, force: true %></td>
+        <td><%= recording.user.username %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No recordings yet.</p>
+<% end %>
