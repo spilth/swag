@@ -4,4 +4,6 @@ class Song < ApplicationRecord
 
   include PublicActivity::Model
   tracked owner: :user, only: %i[create]
+
+  validates :name, presence: true
 end

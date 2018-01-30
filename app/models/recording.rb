@@ -7,5 +7,7 @@ class Recording < ApplicationRecord
 
   has_attached_file :audio
 
+  validates :title, presence: true
+
   validates_attachment_content_type :audio, content_type: ['audio/mpeg', 'audio/wav']
 end
