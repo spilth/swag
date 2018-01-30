@@ -8,7 +8,6 @@
     <tr>
       <th>Song</th>
       <th>Created</th>
-      <th>User</th>
     </tr>
     </thead>
     <tbody>
@@ -16,7 +15,6 @@
       <tr>
         <td><%= link_to song.name, song %></td>
         <td><%= timeago_tag song.created_at, force: true %></td>
-        <td><%= song.user.username %></td>
       </tr>
     <% end %>
     </tbody>
@@ -34,16 +32,14 @@
       <th>Recording</th>
       <th>Song</th>
       <th>Created</th>
-      <th>User</th>
     </tr>
     </thead>
     <tbody>
     <% @user.recordings.each do |recording| %>
       <tr>
         <td><%= link_to recording.title, recording %></td>
-        <td><%= recording.song.name %></td>
+        <td><%= link_to recording.song.name, recording.song %></td>
         <td><%= timeago_tag recording.created_at, force: true %></td>
-        <td><%= recording.user.username %></td>
       </tr>
     <% end %>
     </tbody>
