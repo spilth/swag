@@ -1,24 +1,35 @@
-<h1><%= @song.name %> <small>by <%= @song.user.username %></small></h1>
+<h1><%= @song.name %> <small>by <%= link_to @song.user.username, @song.user %></small></h1>
 
 <p class="lead"><%= @song.description %></p>
 
 <% if @song.recordings.any? %>
-  <h2>Recordings</h2>
+  <h2>Latest Recording: <%= link_to @song.recordings.first.title, @song.recordings.first %></h2>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Created</th>
-      </tr>
-    </thead>
-    <% @song.recordings.each do |recording| %>
-      <tr>
-        <td><%= link_to recording.title, recording %></td>
-        <td><%= timeago_tag recording.created_at, force: true %></td>
-      </tr>
-    <% end %>
-  </table>
+  <p class="lead"><%= @song.recordings.first.description %></p>
+
+  <audio controls>
+    <source src="<%= @song.recordings.first.audio.url %>">
+    Your browser does not support the audio element.
+  </audio>
+
+  <% if @song.recordings.size > 1 %>
+    <h2>Earlier Recordings</h2>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <% @song.recordings[1..-1].each do |recording| %>
+        <tr>
+          <td><%= link_to recording.title, recording %></td>
+          <td><%= timeago_tag recording.created_at, force: true %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
 <% else %>
   <p>No recordings of this song yet.</p>
 <% end %>

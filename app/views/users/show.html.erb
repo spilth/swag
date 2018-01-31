@@ -22,28 +22,3 @@
 <% else %>
   <p>No songs yet.</p>
 <% end %>
-
-<h2>Recordings</h2>
-
-<% if @user.recordings.any? %>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Recording</th>
-      <th>Song</th>
-      <th>Created</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @user.recordings.each do |recording| %>
-      <tr>
-        <td><%= link_to recording.title, recording %></td>
-        <td><%= link_to recording.song.name, recording.song %></td>
-        <td><%= timeago_tag recording.created_at, force: true %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>No recordings yet.</p>
-<% end %>

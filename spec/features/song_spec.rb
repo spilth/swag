@@ -28,5 +28,9 @@ feature 'Songs' do
     click_button 'Create Recording'
 
     expect(page).to have_content('Awesome Song: Version 1')
+
+    click_on 'Awesome Song'
+
+    expect(page).to have_content('Latest Recording: Version 1')
   end
 end
