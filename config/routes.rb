@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :recordings
-  resources :songs
+  resources :songs, shallow: true do
+    resources :recordings
+  end
+
   resources :groups
   resources :users, only: [:index, :show]
 

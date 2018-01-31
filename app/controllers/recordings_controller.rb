@@ -10,13 +10,15 @@ class RecordingsController < ApplicationController
   end
 
   def new
-    @recording = Recording.new
+    @song = Song.find(params[:song_id])
+    @recording = Recording.new(song: @song)
   end
 
   def edit
   end
 
   def create
+    @song = Song.find(params[:song_id])
     @recording = Recording.new(recording_params)
     @recording.user = current_user
 

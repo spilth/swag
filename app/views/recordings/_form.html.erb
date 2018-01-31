@@ -1,8 +1,8 @@
-<%= simple_form_for(@recording, html: {multipart: true}) do |f| %>
+<%= simple_form_for([@song, @recording], html: {multipart: true}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :song, as: :radio_buttons, collection: current_user.songs.order(:name), prompt: 'Choose a Song' %>
+    <%= f.association :song, as: :hidden %>
     <%= f.input :title, placeholder: 'Name this version of the song' %>
     <%= f.input :description, placeholder: 'What is new in this version? What has changed?' %>
 
