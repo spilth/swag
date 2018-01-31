@@ -1,7 +1,9 @@
-<p><%= activity.owner.username %> started a new song called
-  <%= link_to activity.trackable.name, song_path(activity.trackable) %>
-
-  <span class="text-muted">&nbsp;<%= timeago_tag activity.created_at, force: true %></span>
-</p>
-
-<p class="text-muted"><%= activity.trackable.description %></p>
+<div class="card mb-2">
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to activity.trackable.name, song_path(activity.trackable) %></h5>
+    <p class="card-text"><%= activity.trackable.description %></p>
+  </div>
+  <div class="card-footer">
+    New song by <%= link_to activity.owner.username, activity.owner %> <%= timeago_tag activity.created_at, force: true %>
+  </div>
+</div>

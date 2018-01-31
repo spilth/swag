@@ -1,10 +1,9 @@
-<p>
-  <%= activity.owner.username %>
-  added a new version of
-  <%= activity.trackable.song.name %>:
-  <%= link_to activity.trackable.title, recording_path(activity.trackable) %>
-
-  <span class="text-muted">&nbsp;<%= timeago_tag activity.created_at, force: true %></span class="text-muted">
-</p>
-
-<blockquote><%= activity.trackable.description %></blockquote>
+<div class="card mb-2">
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to activity.trackable.title, recording_path(activity.trackable) %> of <%= link_to activity.trackable.song.name, activity.trackable.song %></h5>
+    <p class="card-text"><%= activity.trackable.description %></p>
+  </div>
+  <div class="card-footer">
+    New recording by <%= link_to activity.owner.username, activity.owner %> <%= timeago_tag activity.created_at, force: true %>
+  </div>
+</div>

@@ -1,24 +1,17 @@
 <h1><%= @user.username %></h1>
 
-<h2>Songs</h2>
-
 <% if @user.songs.any? %>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Song</th>
-      <th>Created</th>
-    </tr>
-    </thead>
-    <tbody>
+  <div class="card-columns">
     <% @user.songs.each do |song| %>
-      <tr>
-        <td><%= link_to song.name, song %></td>
-        <td><%= timeago_tag song.created_at, force: true %></td>
-      </tr>
+      <div class="card mb-4">
+        <div class="card-body">
+          <h4 class="card-title"><%= link_to song.name, song %></h4>
+          <h5 class="card-subtitle mb-2 text-muted"><%= timeago_tag song.created_at, force: true %></h5>
+          <p class="card-text"><%= song.description %></p>
+        </div>
+      </div>
     <% end %>
-    </tbody>
-  </table>
+  </div>
 <% else %>
   <p>No songs yet.</p>
 <% end %>
