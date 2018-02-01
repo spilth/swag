@@ -3,37 +3,27 @@
 <p class="lead"><%= @song.description %></p>
 
 <% if @song.recordings.any? %>
-  <h2>Latest Recording: <%= link_to @song.recordings.first.title, @song.recordings.first %></h2>
+  <% @song.recordings.each do |recording| %>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h3 class="card-title"><%= link_to recording.title, recording %></h3>
+        <p class="card-text"><%= recording.description %></p>
 
-  <p class="lead"><%= @song.recordings.first.description %></p>
+        <audio controls>
+          <source src="<%= recording.audio.url %>">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
 
-  <audio controls>
-    <source src="<%= @song.recordings.first.audio.url %>">
-    Your browser does not support the audio element.
-  </audio>
-
-  <% if @song.recordings.size > 1 %>
-    <h2>Earlier Recordings</h2>
-
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Created</th>
-        </tr>
-      </thead>
-      <% @song.recordings[1..-1].each do |recording| %>
-        <tr>
-          <td><%= link_to recording.title, recording %></td>
-          <td><%= timeago_tag recording.created_at, force: true %></td>
-        </tr>
-      <% end %>
-    </table>
+      <div class="card-footer text-muted text-right">
+        <%= timeago_tag recording.created_at, force: true %>
+      </div>
+    </div>
   <% end %>
 <% else %>
   <p>No recordings of this song yet.</p>
 <% end %>
 
-<%= link_to 'Edit', edit_song_path(@song), class: 'btn btn-warning' %>
+<%= link_to 'Edit Song', edit_song_path(@song), class: 'btn btn-warning' %>
 
 <%= link_to 'Add Recording', new_song_recording_path(@song), class: 'btn btn-primary' %>

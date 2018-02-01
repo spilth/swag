@@ -31,6 +31,6 @@ feature 'Songs' do
 
     click_on 'Awesome Song'
 
-    expect(page).to have_content('Latest Recording: Version 1')
+    expect(page).to have_content('Version 1')
   end
 end

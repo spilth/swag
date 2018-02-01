@@ -1,9 +1,14 @@
-<div class="card mb-2">
+<div class="card mb-4">
   <div class="card-body">
-    <h5 class="card-title"><%= link_to activity.trackable.title, recording_path(activity.trackable) %> of <%= link_to activity.trackable.song.name, activity.trackable.song %></h5>
+    <h3 class="card-title"><%= link_to activity.trackable.title, recording_path(activity.trackable) %> of <%= link_to activity.trackable.song.name, activity.trackable.song %></h3>
     <p class="card-text"><%= activity.trackable.description %></p>
+
+    <audio controls>
+      <source src="<%= activity.trackable.audio.url %>">
+      Your browser does not support the audio element.
+    </audio>
   </div>
-  <div class="card-footer">
-    New recording by <%= link_to activity.owner.username, activity.owner %> <%= timeago_tag activity.created_at, force: true %>
+  <div class="card-footer text-muted text-right">
+    By <%= link_to activity.owner.username, activity.owner %> <%= timeago_tag activity.created_at, force: true %>
   </div>
 </div>
