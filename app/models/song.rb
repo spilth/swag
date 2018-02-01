@@ -5,5 +5,5 @@ class Song < ApplicationRecord
   include PublicActivity::Model
   tracked owner: :user, only: %i[create]
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: user }
 end
