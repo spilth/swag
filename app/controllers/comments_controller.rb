@@ -9,6 +9,8 @@ class CommentsController < ApplicationController
     @comment.recording = @recording
 
     if @comment.save
+      CommentMailer.recording_comment(@comment).deliver_now
+
       redirect_to @recording, notice: 'Your comment was added!'
     else
       render :new
