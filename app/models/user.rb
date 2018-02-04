@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :songs, -> { order(created_at: :desc)}
   has_many :recordings, -> { order(created_at: :desc) }, through: :songs
+  has_many :comments, -> { order(created_at: :desc)}
 end

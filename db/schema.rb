@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180125004109) do
+ActiveRecord::Schema.define(version: 20180204221418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 20180125004109) do
     t.index ["recipient_type", "recipient_id"], name: "index_activities_on_recipient_type_and_recipient_id"
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "recording_id"
+    t.bigint "user_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recording_id"], name: "index_comments_on_recording_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -84,6 +94,8 @@ ActiveRecord::Schema.define(version: 20180125004109) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "comments", "recordings"
+  add_foreign_key "comments", "users"
   add_foreign_key "recordings", "songs"
   add_foreign_key "recordings", "users"
   add_foreign_key "songs", "users"

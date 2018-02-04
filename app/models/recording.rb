@@ -4,6 +4,7 @@ class Recording < ApplicationRecord
 
   belongs_to :user
   belongs_to :song
+  has_many :comments, -> { order(created_at: :desc)}
 
   has_attached_file :audio
 

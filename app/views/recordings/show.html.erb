@@ -1,4 +1,4 @@
-<h1><%= link_to @recording.song.name, @recording.song %>: <%= @recording.title %> <small><%= @recording.user.username %></small></h1>
+<h1><%= link_to @recording.song.name, @recording.song %>: <%= @recording.title %> <small>by <%= link_to @recording.user.username, @recording.user %></small></h1>
 
 <p class="lead"><%= @recording.description %></p>
 
@@ -9,4 +9,33 @@
 </audio>
 </p>
 
-<%= link_to 'Edit Recording', edit_recording_path(@recording), class: 'btn btn-warning' %>
+<h2>Comments</h2>
+
+<% @recording.comments.each do |comment| %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <p class="card-text"><%= comment.body %></p>
+
+    </div>
+
+    <div class="card-footer text-right">
+      <%= link_to comment.user.username, comment.user %> <%= timeago_tag comment.created_at, force: true %>
+    </div>
+  </div>
+<% end %>
+
+<h3>Leave a Comment</h3>
+
+<%= simple_form_for([@recording, @comment]) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :body, label: false, placeholder: 'Enter praise and constructive criticism here' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Add Comment', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<hr>
+
+<p><%= link_to 'Edit Recording', edit_recording_path(@recording), class: 'btn btn-warning' %></p>
