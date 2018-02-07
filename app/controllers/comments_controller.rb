@@ -9,7 +9,9 @@ class CommentsController < ApplicationController
     @comment.recording = @recording
 
     if @comment.save
-      CommentMailer.recording_comment(@comment).deliver_now
+      if @comment.user != @recording.user
+        CommentMailer.recording_comment(@comment).deliver_now
+      end
 
       redirect_to @recording, notice: 'Your comment was added!'
     else
